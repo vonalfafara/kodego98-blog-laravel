@@ -14,7 +14,7 @@ class BlogController extends Controller
         $blogs;
 
         if (isset($search)) {
-            $blogs = Blog::whereAny(["title", "subtitle"], "LIKE", "%" . $search . "%")->orderBy($request->query("sortBy"), $request->query("ascDesc"))->get();
+            $blogs = Blog::whereAny(["title", "subtitle"], "ILIKE", "%" . $search . "%")->orderBy($request->query("sortBy"), $request->query("ascDesc"))->get();
         } else {
             $blogs = Blog::orderBy($request->query("sortBy"), $request->query("ascDesc"))->get();
         }
